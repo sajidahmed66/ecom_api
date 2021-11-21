@@ -24,8 +24,15 @@ Discription:
 
 ## Packages installed
 
-    -dotenv, express, morgan, bcrypt,jasonwebtoken, joi, lodash, cors and mongoose
+    - Primary packages
+        dotenv, express, morgan, bcrypt,jasonwebtoken, joi, lodash, cors and mongoose
+    - express-async-errors
  
 
-## Day:01 20 november 2021:
+## Day: 01 21 november 2021:
+
+
+  1. creation of usermodel userController and userRoutes for registration of user and logIn of user(all user will have a default role "user")
+
+  2. for a better way to handle promise related error a package 'express-async-error is used'
 
