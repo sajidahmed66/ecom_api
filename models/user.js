@@ -36,17 +36,17 @@ userSchema.methods.generateAuthToken = function () {
         role: this.role,
         name: this.name,
         email: this.email
-    }, process.env.JWT_SECRET_KEY);
+    }, process.env.JWT_SECRET_KEY, { expiresIn: '12h' });
     return token;
 }
 
 const validateUser = (user) => {
-    const schema = {
+    const schema = joi.object({
         name: joi.string().min(3).max(100).required(),
         email: joi.string().min(5).max(255).required().email(),
         password: joi.string().min(5).max(100).required()
-    };
-    return joi.validate(user, schema);
+    });
+    return schema.validate(user, userSchema);
 };
 
 module.exports.User = model('User', userSchema);
