@@ -21,13 +21,11 @@ module.exports.signUp = async (req, res) => {
     //genarate auth token
     const token = user.generateAuthToken();
 
-    try {
-        const result = await user.save();
-        return res.status(201).send({ user: _.pick(result, ['_id', 'name', 'email']), token: token });
+    //save user
+    const result = await user.save();
+    return res.status(201).send({ user: _.pick(result, ['_id', 'name', 'email']), token: token });
 
-    } catch (error) {
-        return res.status(500).send(error);
-    }
+
 };
 
 //login/signIn controller

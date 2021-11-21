@@ -34,5 +34,6 @@ Discription:
 
   1. creation of usermodel userController and userRoutes for registration of user and logIn of user(all user will have a default role "user")
 
-  2. for a better way to handle promise related error a package 'express-async-error is used'
+  2. for a better way to handle promise related error, a package 'express-async-error is used' and a global middleware is defined to check Promise related errors.
 
+  3. written authorization middleware for token validation and role based authorization via midlleware.
