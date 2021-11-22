@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const { error } = require('./middlewares/error')
 //routres imports
 const userRouter = require('./routers/userRouter');
-
+const categoryRouter = require('./routers/categoryRouter');
 
 //middleware 
 app.use(cors());
@@ -17,6 +17,7 @@ if (process.env.NODE_ENV === 'development') {
 
 //routes defined and used
 app.use('/api/user', userRouter);
+app.use('/api/category', categoryRouter);
 
 // global error handler
 app.use(error);
