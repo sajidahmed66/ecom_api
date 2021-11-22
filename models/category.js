@@ -13,7 +13,7 @@ const categorySchema = new Schema({
 
 module.exports.Category = model('Category', categorySchema);
 
-moduel.exports.validate = (category) => {
+module.exports.validate = (category) => {
     const schema = joi.object({
         name: joi.string().required().min(3).max(50),
     });
