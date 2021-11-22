@@ -9,8 +9,11 @@ module.exports = async (req, res, next) => {
         token = token.split(' ')[1].trim();
     }
     // decode with jwt
-    let decoded = await jwt.decode(token, process.env.JWT_SECRET_KEY);
-    if (!decoded) return res.status(401).send("Invalid token, vul chabi mara khaw");
-    req.user = decoded;
-    next();
+    try {
+        let decoded = await jwt.decode(token, process.env.JWT_SECRET_KEY);
+        req.user = decoded;
+        next();
+    } catch (err) {
+        return res.status(401).send("Invalid token, vul chabi mara khaw");
+    }
 }
