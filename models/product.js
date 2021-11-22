@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const joi = require('joi');
 
-module.exports.Category = model('Category', Schema({
+module.exports.Product = model('Product', Schema({
     name: String,
     description: String,
     price: Number,
