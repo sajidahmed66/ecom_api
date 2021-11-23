@@ -41,16 +41,21 @@ Phase 1 :
   2. for a better way to handle promise related error, a package 'express-async-error is used' and a global middleware is defined to check Promise related errors.
 
   3. written authorization middleware for token validation and role based authorization via midlleware.
-#
-## Day : 02 22 novenber 2021:
 
+## phase 2
     tasks:
 
     1. category, product and subcategory model creation.
     2. category ans products routes
     3. file upload for product.(image/videos)
     4. product filter (query string/or any other sort !)
-
+## Day : 02 22 novenber 2021:
 ==> images uploaded from frontend with from data so to handle from data in tha back end we need to use a package "formidable".
 
 ==> learning Form object of javaScript, formidable(npm package)
+
+
+## Day : 02 23 novenber 2021:
+
+    when data is send as form data as http/xrs request contents of that data does not store in req.body as they are not send as json object, so we will fromidable to parse tha data and then use node modules built-in file system to read the incoming data and save them on the db. the data is saved as binary thou. 
+    using the nodes built-in file-system to read data and store it in product object and save in data base but data is saved as a buffer binary

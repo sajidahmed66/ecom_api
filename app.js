@@ -7,7 +7,7 @@ const { error } = require('./middlewares/error')
 //routres imports
 const userRouter = require('./routers/userRouter');
 const categoryRouter = require('./routers/categoryRouter');
-
+const productRouter = require('./routers/productRouter');
 //middleware 
 app.use(cors());
 app.use(express.json()); //for parsing application/json
@@ -18,6 +18,7 @@ if (process.env.NODE_ENV === 'development') {
 //routes defined and used
 app.use('/api/user', userRouter);
 app.use('/api/category', categoryRouter);
+app.use('/api/product', productRouter);
 
 // global error handler
 app.use(error);
