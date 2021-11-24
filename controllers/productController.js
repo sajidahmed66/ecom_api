@@ -56,15 +56,11 @@ module.exports.getProductById = async (req, res) => {
     res.status(200).send(product);
 };
 
-module.exports.updateProductById = async (req, res) => {
-
-};
 
 module.exports.getPhotoById = async (req, res) => {
     const productId = req.params.id;
-    const product = await Product
-        .findById(productId)
-        .populate('category name');
+    const product = await Product.findById(productId)
+        .populate('category', 'name');
 
     // if no product found
     if (!product) return res.status(404).send("product not found");
@@ -73,3 +69,51 @@ module.exports.getPhotoById = async (req, res) => {
 };
 
 
+module.exports.updateProductById = async (req, res) => {
+    console.log(req.params.id);
+    const productId = req.params.id;
+    const product = await Product.findById(productId)
+
+    const form = formidable({ multiples: true });
+    form.parse(req, (err, fields, files) => {
+        if (err) return res.status(400).send("Something went wrong while parseing data")
+        let updatedProduct = _.pick(fields, ["name", "descripton", "price", "category", "quantity"]);
+        _.assignIn(product, updatedProduct);
+
+        //check if photo is present thn save it
+        if (files.photo) {
+            fs.readFile(files.photo.filepath, (err, data) => {
+                if (err) return res.status(400).send("something went wrong while reading file", err);
+                product.photo.data = data;
+                product.photo.contentType = files.photo.contentType;
+                product.save((err, result) => {
+                    if (err) return res.status(400).send("something went wrong while saving product", err);
+                    else return res.status(200).send(_.pick(result, ["_id", "name", "description", "price", "category", "quantity"]));
+                })
+            })
+        } else {
+            product.save((err, result) => {
+                if (err) return res.status(400).send("something went wrong while saving product", err);
+                else return res.status(200).send({
+                    message: "product updated successfully",
+                    data: _.pick(result, ["_id", "name", "description", "price", "category", "quantity"])
+                });
+            })
+        }
+
+    });
+
+};
+
+// const form = formidable({ multiples: true });
+// form.parse(req, async (err, fields, files) => {
+//     if (err) return res.status(400).send("something went wrong while parseing form-data", err);
+//     const { error } = validate((_.pick(fields, ["name", "description", "price", "category", "quantity"])));
+//     if (error) return res.status(400).send(error.details[0].message);
+//     const productId = req.params.id;
+//     const product = await Product.findByIdAndUpdate(productId, {
+//         $set: _.pick(fields, ["name", "description", "price", "category", "quantity"])
+//     }, { new: true });
+//     if (!product) return res.status(404).send("product not found");
+//     res.status(200).send(_.pick(product, ["_id", "name", "description", "price", "category", "quantity"]));
+// });
