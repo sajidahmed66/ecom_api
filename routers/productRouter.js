@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const admin = require('../middlewares/admin');
 const authorize = require('../middlewares/authorize')
-const { getProducts, createProduct, getProductById, updateProductById, getPhotoById } = require('../controllers/productController');
+const { getProducts, createProduct, getProductById, updateProductById, getPhotoById, filterProducts } = require('../controllers/productController');
 
 router.route('/')
     .get(getProducts)
@@ -11,4 +11,6 @@ router.route('/:id')
     .put([authorize, admin], updateProductById)
 router.route('/photo/:id')
     .get(getPhotoById)
+router.route('/filter')
+    .post(filterProducts)
 module.exports = router;

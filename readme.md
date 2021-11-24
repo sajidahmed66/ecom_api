@@ -59,3 +59,30 @@ Phase 1 :
 
     when data is send as form data as http/xrs request contents of that data does not store in req.body as they are not send as json object, so we will fromidable to parse tha data and then use node modules built-in file system to read the incoming data and save them on the db. the data is saved as binary thou. 
     using the nodes built-in file-system to read data and store it in product object and save in data base but data is saved as a buffer binary
+
+## Day : 03 24 nov 2021:
+### get the damm product at first 
+query string can pass data ad key valu pair. The data is recived as req.query as an object of key valie pair.
+
+        req.query:{
+                    order: "desec",
+                    limit: "10",
+                    sortBy: "name"
+                    }  
+
+all data that is recived is always string type or integers must be parsed.
+
+query params are append after the question mark this: .../api/product?order=desec&limit=10&sortBy=name/
+Now for Updating product by ID
+    steps:
+        get product by id
+        collect data 
+        Update Provided from fields
+        Update photo (if provided) 
+
+
+### Now how about filter function?
+
+    - gotta be flexiable
+    - filtering the product with a dedicated  route with more functionallity.
+    - features to be included
