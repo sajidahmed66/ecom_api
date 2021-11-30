@@ -37,7 +37,6 @@ module.exports.signIn = async (req, res) => {
      const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     */
-
     let user = {};
     user = await User.findOne({ email: req.body.email });
     if (!user) return res.status(400).send('Invalid Email or password');
@@ -49,7 +48,7 @@ module.exports.signIn = async (req, res) => {
     //genarate auth token
     const token = user.generateAuthToken();
 
-    return res.status(400).send({ user: _.pick(user, ['_id', 'name', 'email']), token: token });
+    return res.status(200).send({ user: _.pick(user, ['_id', 'name', 'email']), token: token });
 
 };
 
