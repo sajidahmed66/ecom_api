@@ -14,9 +14,7 @@ module.exports.createCategory = async (req, res) => {
 }
 
 module.exports.getCategories = async (req, res) => {
-    const categories = await Category.find().sort({ name: 1 });
-    return res.status(200).send({
-        data: categories
-    });
+    const categories = await Category.find().sort({ name: 1 }).select('-__v -createdAt -updatedAt');
+    return res.status(200).send(categories);
 }
 

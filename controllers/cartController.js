@@ -32,11 +32,11 @@ module.exports.getCartItem = async (req, res) => {
 };
 
 module.exports.updateCartItem = async (req, res) => {
-    let { _id, count } = _.pick(req.body, ['_id', 'count']);
+    let { _id, quantity } = _.pick(req.body, ['_id', 'quantity']);
     let cartItem = await CartItem.updateOne({
         _id: _id,
         user: req.user._id
-    }, { quantity: count }, { new: true });
+    }, { quantity: quantity }, { new: true });
     res.status(200).send(cartItem);
 };
 

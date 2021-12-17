@@ -49,7 +49,8 @@ module.exports.getProductById = async (req, res) => {
     const productId = req.params.id;
     // find product by id
     const product = await Product.findById(productId)
-        .select({ photo: 0 })  //to remove photo from response;
+        .select({ photo: 0 }) //to remove photo from response;
+        .populate('category', 'name')
     // if product not found
     if (!product) return res.status(404).send("product not found");
     // send product
