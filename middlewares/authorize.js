@@ -1,4 +1,4 @@
-// a middleware to very the tokrn and user
+// a middleware to verify the tokrn and user
 const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res, next) => {

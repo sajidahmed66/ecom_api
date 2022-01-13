@@ -1,7 +1,7 @@
 //sslcommerce integration
 
 // payment session initialization 
-const SSLCommerz = require('sslcommerz-node');
+const SSLCommerz = require('ssl-commerz-node');
 const PaymentSession = SSLCommerz.PaymentSession;
 const { Profile } = require('../models/profile');
 
