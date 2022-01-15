@@ -4,12 +4,17 @@
 const SSLCommerz = require('ssl-commerz-node');
 const PaymentSession = SSLCommerz.PaymentSession;
 const { Profile } = require('../models/profile');
+const { CartItem } = require('../models/cartItem');
 
+
+module.exports.ipn = async (req, res) => {
+    console.log(res.body);
+}
 
 module.exports.initPayment = async (req, res) => {
 
     const userId = req.user._id;
-    const cartItems = await Cart.findOne({ user: userId });
+    const cartItems = await CartItem.find({ user: userId });
     const profile = await Profile.findOne({ user: userId });
 
     const { phone, address1, address2, city, state, postcode, country } = profile
@@ -20,6 +25,7 @@ module.exports.initPayment = async (req, res) => {
     const tran_id = '_' + Math.random().toString(36).substr(2, 9) + Date.now();
 
     // For live payment set first parameter `false` and for sandbox set it `true`
+    console.log(process.env.SSLCOMMERZ_STORE_ID, process.env.SSLCOMMERZ_STORE_PASSWORD);
     const payment = new PaymentSession(
         true,
         process.env.SSLCOMMERZ_STORE_ID,
@@ -81,5 +87,6 @@ module.exports.initPayment = async (req, res) => {
     });
 
     let response = await payment.paymentInit();
+    // console.log(response);
     return res.status(200).send(response);
 }
