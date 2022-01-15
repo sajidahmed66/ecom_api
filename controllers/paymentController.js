@@ -8,7 +8,7 @@ const { CartItem } = require('../models/cartItem');
 
 
 module.exports.ipn = async (req, res) => {
-    console.log(res.body);
+    console.log(req.body);
 }
 
 module.exports.initPayment = async (req, res) => {
