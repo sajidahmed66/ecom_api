@@ -19,7 +19,7 @@ module.exports.Order = model('Order', Schema({
     status: {  //payment status
         type: String,
         enum: ['Pending', 'Completed'],
-        default: 'pending'
+        default: 'Pending'
     },
     user: {
         type: Schema.Types.ObjectId,
