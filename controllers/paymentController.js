@@ -99,7 +99,7 @@ module.exports.initPayment = async (req, res) => {
     });
 
     let response = await payment.paymentInit();
-    // console.log(response);
+    console.log(response);
     let order = new Order({
         cartItems: cartItems,
         user: userId,

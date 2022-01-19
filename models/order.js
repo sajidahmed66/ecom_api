@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const { CartItemSchema } = require('./cartItem')
 
-module.exports.order = model('order', Schema({
+module.exports.Order = model('Order', Schema({
     cartItems: [CartItemSchema],
     tarnsaction_Id: {
         type: String,
