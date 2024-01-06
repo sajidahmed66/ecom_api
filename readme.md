@@ -86,3 +86,14 @@ Now for Updating product by ID
     - gotta be flexiable
     - filtering the product with a dedicated  route with more functionallity.
     - features to be included
+
+
+### task list:
+
+    1.order ascending-desending,
+    2. show product by sold,
+    3. load more Button,
+    4. Product Review,
+    5. Coupon Option,
+    6. Show Parchase history,
+    7. Validate Payment,
